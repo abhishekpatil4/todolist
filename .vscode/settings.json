@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/82cecac1-e178-4608-8c6f-8d7ab4790f36/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/todolist-dcc",
+    "appService.deploySubpath": "."
+}
