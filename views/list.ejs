@@ -40,9 +40,11 @@
             <tbody>
                 <% newListItems.forEach(function(item){ %>
                 <tr>
-                    <td><input type="checkbox" name="checkbox" value="<%= item._id %>" onchange="this.form.submit()"></td>
-                    <td style="width: 50%;"><span><%= item.content %></span></td>
-                    <td><p><%= getTimeLeft(item.date) %></p></td>
+                    <form action="/delete" method="post">
+                        <td><input type="checkbox" name="checkbox" value="<%= item._id %>" onchange="this.form.submit()"></td>
+                        <td style="width: 50%;"><span><%= item.content %></span></td>
+                        <td><p><%= getTimeLeft(item.date) %></p></td>
+                    </form>
                 </tr>
                 <% }) %>
             </tbody>
