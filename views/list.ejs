@@ -40,9 +40,11 @@
             <tbody>
                 <% newListItems.forEach(function(item){ %>
                 <tr>
-                    <td><input type="checkbox" name="checkbox" value="<%= item._id %>" onchange="this.form.submit()"></td>
-                    <td style="width: 50%;"><span><%= item.content %></span></td>
-                    <td><p><%= getTimeLeft(item.date) %></p></td>
+                    <form action="/delete" method="post">
+                        <td><input type="checkbox" name="checkbox" value="<%= item._id %>" onchange="this.form.submit()"></td>
+                        <td style="width: 50%;"><span><%= item.content %></span></td>
+                        <td><p><%= getTimeLeft(item.date) %></p></td>
+                    </form>
                 </tr>
                 <% }) %>
             </tbody>
@@ -56,8 +58,8 @@
         </form>
     </div>
     <div class="box-button" id="heading">
-        <form action="/logout" method="post" autocomplete="off">
-            <a href="https://localhost:3000/logout"><button type="submit" name="button"><b>Logout</b></button></a>
+        <form action="/logout"  autocomplete="off">
+            <a href="/logout"><button type="submit" name="button"><b>Logout</b></button></a>
         </form>
     </div>
     
