@@ -34,13 +34,14 @@ const listSchema = new mongoose.Schema({
 const List = mongoose.model("todolist", listSchema);
 
 const config = {
-  authRequired: false,
-  auth0Logout: true,
-  secret: 'a long, randomly-generated string stored in env',
-  baseURL: 'http://localhost:3000',
-  clientID: 'ZMrTV6x9GRIhrqmWevy8LEd3RR3cWyP0',
-  issuerBaseURL: 'https://dev-4ew8bck655nqvoem.us.auth0.com'
-};
+    authRequired: false,
+    auth0Logout: true,
+    secret: 'a long, randomly-generated string stored in env',
+    baseURL: 'https://todolist7.azurewebsites.net',
+    // baseURL: 'https://localhost:3000',
+    clientID: 'ZMrTV6x9GRIhrqmWevy8LEd3RR3cWyP0',
+    issuerBaseURL: 'https://dev-4ew8bck655nqvoem.us.auth0.com'
+  };
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
@@ -54,6 +55,7 @@ app.get("/",requiresAuth(), function (req, res) {
         res.redirect("/login");
     }
     console.log(JSON.stringify(req.oidc.user));
+    const data = JSON.stringify(req.oidc.user);
     var today = new Date();
     var options = {
         weekday: "long",
@@ -66,7 +68,7 @@ app.get("/",requiresAuth(), function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.render('list', { kindOfDay: day, newListItems: items });        
+            res.render('list', { kindOfDay: day, newListItems: items, data:data});        
         }
     });
 });
