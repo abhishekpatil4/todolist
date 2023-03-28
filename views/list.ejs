@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+        window.OneSignal = window.OneSignal || [];
+        OneSignal.push(function () {
+            OneSignal.init({
+                appId: "06285199-14e2-4112-a363-e79bec25bf5d",
+            });
+        });
+    </script>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,65 +20,69 @@
     <title>To Do List</title>
 
 </head>
+
 <body>
     <div class="headTitle">
         <!-- <h1>Welcome <%= data.given_name%> <%= data.family_name%></h1> -->
     </div>
     <div class="box" id="heading">
-        <h1> <%= kindOfDay %></h1>
+        <h1>
+            <%= kindOfDay %>
+        </h1>
     </div>
-    <%
-    function getTimeLeft(date) {
-        const futureDate = new Date(date);
-        const currentDate = new Date();
-        let timeDiff = futureDate.getTime() - currentDate.getTime();
-        let daysLeft = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-        let hoursLeft = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutesLeft = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-        let secondsLeft = Math.floor((timeDiff % (1000 * 60)) / 1000);
-      
-        let timeLeft = '';
-        if (daysLeft > 0) {
-          timeLeft += daysLeft + ' day(s), ';
+    <% function getTimeLeft(date) { const futureDate=new Date(date); const currentDate=new Date(); let
+        timeDiff=futureDate.getTime() - currentDate.getTime(); let daysLeft=Math.floor(timeDiff / (1000 * 60 * 60 *
+        24)); let hoursLeft=Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); let
+        minutesLeft=Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60)); let secondsLeft=Math.floor((timeDiff %
+        (1000 * 60)) / 1000); let timeLeft='' ; if (daysLeft> 0) {
+        timeLeft += daysLeft + ' day(s), ';
         }
         if (hoursLeft > 0) {
-          timeLeft += hoursLeft + ' hour(s), ';
+        timeLeft += hoursLeft + ' hour(s), ';
         }
         if (minutesLeft > 0) {
-          timeLeft += minutesLeft + ' minute(s) ';
+        timeLeft += minutesLeft + ' minute(s) ';
         }
-       
+
         return timeLeft;
-      }
-    %>
-    <div class="box">
-        <table>
-            <tbody>
-                <% newListItems.forEach(function(item){ %>
-                <tr>
-                    <form action="/delete" method="post">
-                        <td><input type="checkbox" name="checkbox" value="<%= item._id %>" onchange="this.form.submit()"></td>
-                        <td style="width: 50%;"><span><%= item.content %></span></td>
-                        <td><p><%= getTimeLeft(item.date) %></p></td>
-                    </form>
-                </tr>
-                <% }) %>
-            </tbody>
-        </table>
+        }
+        %>
+        <div class="box">
+            <table>
+                <tbody>
+                    <% newListItems.forEach(function(item){ %>
+                        <tr>
+                            <form action="/delete" method="post">
+                                <td><input type="checkbox" name="checkbox" value="<%= item._id %>"
+                                        onchange="this.form.submit()"></td>
+                                <td style="width: 50%;"><span>
+                                        <%= item.content %>
+                                    </span></td>
+                                <td>
+                                    <p>
+                                        <%= getTimeLeft(item.date) %>
+                                    </p>
+                                </td>
+                            </form>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
 
-        <form class="item" action="/" method="post" autocomplete="off">
-            <input type="text" name="newItem" placeholder="New Item">
-            <input id="datePicker" value="2023-03-10T10:45" type="datetime-local" name="newItemDate" placeholder="New Item Date">
-            <!-- <input id="timePicker"  value="10:50" type="time" name="newItemTime" placeholder="New Item Time"> -->
-            <button id="addButton" type="submit" name="button">+</button>
-        </form>
-    </div>
-    <div class="box-button" id="heading">
-        <form action="/logout"  autocomplete="off">
-            <a href="/logout"><button type="submit" name="button"><b>Logout</b></button></a>
-        </form>
-    </div>
-    
+            <form class="item" action="/" method="post" autocomplete="off">
+                <input type="text" name="newItem" placeholder="New Item">
+                <input id="datePicker" value="2023-03-10T10:45" type="datetime-local" name="newItemDate"
+                    placeholder="New Item Date">
+                <!-- <input id="timePicker"  value="10:50" type="time" name="newItemTime" placeholder="New Item Time"> -->
+                <button id="addButton" type="submit" name="button">+</button>
+            </form>
+        </div>
+        <div class="box-button" id="heading">
+            <form action="/logout" autocomplete="off">
+                <a href="/logout"><button type="submit" name="button"><b>Logout</b></button></a>
+            </form>
+        </div>
+
 </body>
-</html>
 
+</html>
