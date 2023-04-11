@@ -40,8 +40,8 @@ const config = {
     authRequired: false,
     auth0Logout: true,
     secret: 'a long, randomly-generated string stored in env',
-    baseURL: 'https://todolist7.azurewebsites.net',
-    // baseURL: 'https://localhost:3000',
+    // baseURL: 'https://todolist7.azurewebsites.net',
+    baseURL: 'http://localhost:3000',
     clientID: 'ZMrTV6x9GRIhrqmWevy8LEd3RR3cWyP0',
     issuerBaseURL: 'https://dev-4ew8bck655nqvoem.us.auth0.com'
 };
